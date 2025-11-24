@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Think NXT-stijl Landing</title>
+  <meta name="description" content="Event landingpage in de stijl van ThinkNXT: hero, programma, sprekers, partners en registratie." />
+
+  <!-- Fonts (system stack voor performance; wil je exact look & feel, koppel bv. Inter/Manrope) -->
+  <style>
+    :root{
+      --bg: #0b0f14;            /* donker achtergrond */
+      --card: #121822;
+      --text: #eaf2ff;
+      --muted: #a9b4c7;
+      --accent: #7a5cff;        /* paars/blauw accent */
+      --accent-2: #23c2ff;      /* cyan accent */
+      --border: #1e2633;
+      --success: #34d399;
+      --danger: #ef4444;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --maxw: 1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';}
+    a{color:inherit;text-decoration:none}
+    .container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+    /* Navbar */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: saturate(180%) blur(10px);
+      background: linear-gradient(180deg, rgba(11,15,20,0.85), rgba(11,15,20,0.65));
+      border-bottom:1px solid var(--border);
+    }
+    .nav .bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.3px}
+    .brand .logo{
+      width:36px;height:36px;border-radius:8px;
+      background: conic-gradient(from 180deg, var(--accent), var(--accent-2), var(--accent));
+      box-shadow: var(--shadow);
+    }
+    .nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+    .nav a:hover{opacity:.85}
+    .cta{
+      padding:10px 16px;border-radius:10px;font-weight:600;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color:#0a0f14; box-shadow: var(--shadow);
+    }
+
+    /* Hero */
+    .hero{
+      position:relative; overflow:hidden;
+      padding:80px 0 40px;
+      background:
+        radial-gradient(1200px 400px at 10% 0%, rgba(122,92,255,.25), transparent 60%),
+        radial-gradient(1000px 360px at 90% 30%, rgba(35,194,255,.18), transparent 60%);
+      border-bottom:1px solid var(--border);
+    }
+    .hero-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+    .kicker{color:var(--accent-2);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:12px}
+    h1{font-size:clamp(28px,4.2vw,56px);line-height:1.05;margin:14px 0}
+    .sub{color:var(--muted);font-size:clamp(16px,2vw,20px)}
+    .meta{display:flex;gap:18px;flex-wrap:wrap;margin:22px 0}
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.03)
+    }
+    .badge .dot{width:8px;height:8px;border-radius:999px;background:var(--accent)}
+    .hero-actions{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:12px 18px;border-radius:12px;border:1px solid var(--border);font-weight:600
+    }
+    .btn.primary{border:none;color:#0a0f14;background: linear-gradient(90deg, var(--accent), var(--accent-2));box-shadow: var(--shadow)}
+    .btn.ghost{background:transparent;color:var(--text)}
+    .hero-card{
+      background:linear-gradient(180deg, rgba(18,24,34,.7), rgba(18,24,34,.5));
+      border:1px solid var(--border);border-radius:var(--radius);padding:24px; box-shadow: var(--shadow)
+    }
+    .hero-card h3{margin:0 0 8px;font-size:20px}
+    .hero-card ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+    .hero-card li{display:flex;align-items:flex-start;gap:12px;color:var(--muted)}
+    .hero-card .check{color:var(--success);font-weight:900}
+
+    /* Sections */
+    section{padding:70px 0;border-bottom:1px solid var(--border)}
+    .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:26px;gap:16px}
+    .section-head h2{font-size:clamp(22px,3.2vw,36px);margin:0}
+    .section-head p{color:var(--muted);max-width:720px;margin:0}
+    .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .card{grid-column:span 6;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+    .card h3{margin:0 0 8px}
+    .card p{color:var(--muted)}
+    @media (max-width:900px){ .hero-inner{grid-template-columns:1fr} .card{grid-column:span 12} }
+
+    /* Program timeline */
+    .timeline{display:grid;gap:16px}
+    .slot{display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:start;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:14px}
+    .time{font-weight:700;color:var(--accent-2)}
+    .slot h4{margin:0}
+    .tag{display:inline-flex;padding:4px 8px;border-radius:999px;border:1px solid var(--border);font-size:12px;color:var(--muted)}
+
+    /* Speakers */
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .speaker{grid-column:span 3;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+    .speaker .photo{aspect-ratio:1/1;background:#0e141d url('assets/speaker-1.jpg') center/cover no-repeat}
+    .speaker:nth-child(2) .photo{background-image:url('assets/speaker-2.jpg')}
+    .speaker:nth-child(3) .photo{background-image:url('assets/speaker-3.jpg')}
+    .speaker:nth-child(4) .photo{background-image:url('assets/speaker-4.jpg')}
+    .speaker .bio{padding:14px}
+    .speaker .name{font-weight:700}
+    .speaker .role{color:var(--muted);font-size:14px}
+    @media (max-width:900px){ .speaker{grid-column:span 6} }
+    @media (max-width:600px){ .speaker{grid-column:span 12} }
+
+    /* Partners */
+    .logos{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+    .logo-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:center;height:90px}
+    .logo-card img{max-height:54px;opacity:.9;filter:grayscale(100%);transition:.2s}
+    .logo-card:hover img{filter:none;opacity:1}
+    @media (max-width:900px){ .logos{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:600px){ .logos{grid-template-columns:repeat(2,1fr)} }
+
+    /* FAQ */
+    details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px}
+    summary{cursor:pointer;font-weight:600}
+
+    /* Footer */
+    footer{padding:40px 0;color:var(--muted)}
+    .footer-inner{display:flex;align-items:start;gap:36px;flex-wrap:wrap}
+    .foot-col{flex:1 1 240px}
+    .foot-col h4{margin:0 0 8px;color:var(--text)}
+    .small{font-size:12px;color:#8fa0b8}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container bar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Proximus NXT-ish</span>
+      </div>
+      <ul>
+        <li><a href="#programma">Programma</a></li>
+        <li><a href="#sprekers">Sprekers</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a class="cta" href="#register">Register</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="kicker">Samen klaar voor wat komt</div>
+        <h1>Think NXT – Inspiratie, Tech &amp; Netwerken</h1>
+        <p class="sub">Ontdek hoe cloud, cybersecurity, AI, slimme netwerken en digital workplace samen échte business impact creëren.</p>
+        <div class="meta">
+          <div class="badge"><span class="dot"></span> Donderdag 27 november • Brussel</div>
+          <div class="badge"><span class="dot"></span> 09:30 – 22:00</div>
+          <div class="badge"><span class="dot"></span> Taal: Engels</div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn primary" href="#register">Registreer nu</a>
+          <a class="btn ghost" href="#programma">Bekijk programma</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <h3>Wat je mag verwachten</h3>
+        <ul>
+          <li><span class="check">✔</span> Keynotes &amp; breakout-sessies</li>
+          <li><span class="check">✔</span> Experience zone met live demo’s</li>
+          <li><span class="check">✔</span> Netwerken tijdens walking dinner</li>
+          <li><span class="check">✔</span> Partners van topniveau</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <!-- PROGRAMMA -->
+  <section id="programma">
+    <div class="container">
+      <div class="section-head">
+        <h2>Programma</h2>
+        <p>Een volledige dag met inspirerende keynotes, breakout tracks en hands‑on demo’s, met tijd om te connecteren en ideeën uit te wisselen.</p>
+      </div>
+
+      <div class="cards" style="margin-bottom:22px">
+        <article class="card">
+          <h3>Ochtend</h3>
+          <div class="timeline">
+            <div class="slot"><div class="time">09:30</div><div><h4>Welcome &amp; Coffee</h4><span class="tag">Plenary</span></div></div>
+            <div class="slot"><div class="time">10:00</div><div><h4>Breakouts (4 zalen)</h4><p class="small">Gezondheidszorg 5G • Smart Security • Business Messaging • Digital Employee Experience</p></div></div>
+            <div class="slot"><div class="time">12:30</div><div><h4>Connect &amp; Lunch</h4><span class="tag">Networking</span></div></div>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Namiddag &amp; Avond</h3>
+          <div class="timeline">
+            <div class="slot"><div class="time">13:30</div><div><h4>Plenary: Trends &amp; Cyber resilience</h4><span class="tag">Keynotes</span></div></div>
+            <div class="slot"><div class="time">15:00</div><div><h4>Breakouts (4 zalen)</h4><p class="small">Managed Services • AI in Banking • Geopolitiek &amp; Tech • Digital Resiliency</p></div></div>
+            <div class="slot"><div class="time">18:00</div><div><h4>Walking dinner &amp; networking</h4><span class="tag">Experience</span></div></div>
+          </div>
+        </article>
+      </div>
+
+      <p class="small">De indeling volgt het patroon van ThinkNXT (ochtendbreakouts, lunch, namiddagplenary, extra breakouts, walking dinner). Pas de sessies/labels aan naar jouw inhoud. [2](https://www.thinknxt.be/en/id_program/program.html)</p>
+    </div>
+  </section>
+
+  <!-- SPREKERS -->
+  <section id="sprekers">
+    <div class="container">
+      <div class="section-head">
+        <h2>Sprekers</h2>
+        <p>Een mix van bedrijfsleiders, technologen en innovators die hun visie delen over AI, cloud, security en digitale transformatie.</p>
+      </div>
+      <div class="grid">
+        <article class="speaker">
+          <div class="photo" role="img" aria-label="Spreker 1"></div>
+          <div class="bio">
+            <div class="name">Voornaam Achternaam</div>
+            <div class="role">Functie • Organisatie</div>
+          </div>
+        </article>
+        <article class="speaker">
+          <div class="photo" role="img" aria-label="Spreker 2"></div>
+          <div class="bio">
+            <div class="name">Voornaam Achternaam</div>
+            <div class="role">Functie • Organisatie</div>
+          </div>
+        </article>
+        <article class="speaker">
+          <div class="photo" role="img" aria-label="Spreker 3"></div>
+          <div class="bio">
+            <div class="name">Voornaam Achternaam</div>
+            <div class="role">Functie • Organisatie</div>
+          </div>
+        </article>
+        <article class="speaker">
+          <div class="photo" role="img" aria-label="Spreker 4"></div>
+          <div class="bio">
+            <div class="name">Voornaam Achternaam</div>
+            <div class="role">Functie • Organisatie</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section id="partners">
+    <div class="container">
+      <div class="section-head">
+        <h2>Partners</h2>
+        <p>Toonaangevende bedrijven tonen hun nieuwste oplossingen in de experience zone. Voeg hier je partnerlogo’s toe (SVG/PNG). [1](https://www.thinknxt.be/en/id_thinknxt/think-nxt-2025.html)</p>
+      </div>
+      <div class="logos">
+        <div class="logo-card"><img src="assets/logo-1.svg" alt="Partner 1"></div>
+        <div class="logo-card"><img src="assets/logo-2.svg" alt="Partner 2"></div>
+        <div class="logo-card"><img src="assets/logo-3.svg" alt="Partner 3"></div>
+        <div class="logo-card"><img src="assets/logo-4.svg" alt="Partner 4"></div>
+        <div class="logo-card"><img src="assets/logo-5.svg" alt="Partner 5"></div>
+        <div class="logo-card"><img src="assets/logo-6.svg" alt="Partner 6"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-head">
+        <h2>FAQ</h2>
+        <p>Praktische info zoals kosten, collega’s meebrengen, taal en locatie kan je hier beantwoorden (naar analogie met ThinkNXT). [1](https://www.thinknxt.be/en/id_thinknxt/think-nxt-2025.html)</p>
+      </div>
+      <div class="cards">
+        <details class="card">
+          <summary>Wat kost het event?</summary>
+          <p>Vul hier je tarief of uitnodigingsvoorwaarden in.</p>
+        </details>
+        <details class="card">
+          <summary>Kan ik collega’s meebrengen?</summary>
+          <p>Beschrijf of en hoe registratie per persoon werkt.</p>
+        </details>
+        <details class="card">
+          <summary>In welke taal zijn de sessies?</summary>
+          <p>Bij ThinkNXT is de communicatie in het Engels; pas aan naar jouw event. GISTRATIE -->
+  <section id="register">
+    <div class="container">
+      <div class="section-head">
+        <h2>Registreer</h2>
+        <p>Makkelijk inschrijven in drie stappen: gegevens, bevestiging, praktische info—zoals het registratie‑patroon bij ThinkNXT. [3](https://nxt.proximus.be/registration-thinknxt)</p>
+      </div>
+
+      <form class="cards" onsubmit="event.preventDefault(); alert('Bedankt voor je registratie!');">
+        <div class="card" style="grid-column:span 7">
+          <h3>Jouw gegevens</h3>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+            <label>Voornaam<input type="text" required style="width:100%"></label>
+            <label>Naam<input type="text" required style="width:100%"></label>
+            <label>E‑mail<input type="email" required style="width:100%"></label>
+            <label>Telefoon<input type="tel" style="width:100%"></label>
+            <label style="grid-column:span 2">Bedrijf of BTW‑nummer<input type="text" style="width:100%"></label>
+            <label>Afdeling<input type="text" style="width:100%"></label>
+            <label>Jobniveau<select style="width:100%"><option>— selecteer —</option><option>Medewerker</option><option>Manager</option><option>Directie</option></select></label>
+          </div>
+          <label style="display:flex;gap:10px;margin-top:12px">
+            <input type="checkbox"> Ik wil productcontent ontvangen per e‑mail
+          </label>
+        </div>
+        <aside class="card" style="grid-column:span 5">
+          <h3>Eventdetails</h3>
+          <p><strong>Datum</strong>: 27 november<br><strong>Locatie</strong>: Brussel Gate (pas aan)<br><strong>Tijd</strong>: 09:30 – 22:00</p>
+          <p class="small">Een paar dagen voor het event stuur je praktische info (route, parking). [1](https://www.thinknxt.be/en/id_thinknxt/think-nxt-2025.html)</p>
+          <button class="btn primary" type="submit">Bevestig registratie</button>
+        </aside>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="foot-col">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <span>Proximus NXT-ish</span>
+        </div>
+        <p class="small">Deze pagina is een look‑alike template geïnspireerd op de opzet van ThinkNXT, zonder gebruik van hun teksten, logo’s of beeldmateriaal.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <p class="small">hello@jouwdomein.be<br>+32 000 00 00 00</p>
+      </div>
+      <div class="foot-col">
+        <h4>Volg ons</h4>
+        <p class="small">LinkedIn • X • YouTube</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
